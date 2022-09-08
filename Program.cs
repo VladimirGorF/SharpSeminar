@@ -1138,13 +1138,16 @@ Console.WriteLine("Please input correctly");
   переместился на другое место (возможно для этого удобно будет использование множества) и выполнить это за m*n / 2 итераций.
 То есть если массив три на четыре, то надо выполнить не более 6 итераций. И далее в конце опять вывести на экран как таблицу.
 */
+/*
 Console.WriteLine("Please input m and n");
 int m = Convert.ToInt32(Console.ReadLine());
 int n = Convert.ToInt32(Console.ReadLine());
 int k = 0;
-int l = 0;
+
+
 Console.WriteLine();
 int [,] matrix = new int [m,n];
+int [] ArrayOneRow = new int [m * n];
 
 void PrintArray(int [,]matr)
 {
@@ -1152,7 +1155,7 @@ for (int i = 0; i < matr.GetLength(0); i++)
 {
     for (int j = 0; j < matr.GetLength(1); j++)
     {
-       Console.Write($"{matr [i,j] }({i},{j}) ");
+       Console.Write($"{matr [i,j] } ");
     }
     Console.WriteLine();
 }
@@ -1170,35 +1173,65 @@ for (int i = 0; i < matr.GetLength(0); i++)
 }
 }
 
-void MixingArray(int [,]matr)
+void GetNewArray (int [,]matr)
 {
     for ( int i = 0; i < matr.GetLength(0); i++)
     {
         for (int j = 0; j < matr.GetLength(1); j++)
-        {  
-            k = new Random().Next(0,m); // ввел случайные координаты
-            l = new Random().Next(0,n);
-
-            int Buff = matr[i,j];
-            matr[i,j] = matr[k,l];   // заменил на первый элемент и далее по порядку
-            matr[k,l] = Buff;
-               
-        }
+           {
+            int x = 0;
+            ArrayOneRow[x] = matr[i,j];
+            Console.Write($"{ArrayOneRow[x]}     ");
+            x += 1; 
+           }
     }
     Console.WriteLine();
+}
+
+
+void MixingArray()
+{   
+    int x = m * n;                        // создаю   массив рандомных чисел которых ранее не было
+    int [] ArrRandom = new int [x];
+    k = new Random().Next(1, x);
+
+    for (int i = 0; i < x; i++)
+    {
+        if (ArrRandom.Contains(k))
+        {
+            k = new Random().Next(1, x);
+            i--;    
+        } 
+        else 
+        {
+        ArrRandom [i] = k;
+        }
+       
     }
 
-
-
+     for (x = 0; x < ArrayOneRow.Length; x++)
+        {
+        int i = 0;    
+        k = ArrRandom [i];
+        int Buff = ArrayOneRow[x]; 
+        ArrayOneRow[x] = ArrayOneRow[k];  //  меняем числа на рандомные
+        ArrayOneRow[k] = Buff;
+        Console.Write ($"{ArrayOneRow[x]}      ");
+        i++;
+        }
+        
+    Console.WriteLine();
+}
 
 FillArray(matrix);
 PrintArray(matrix);
 Console.WriteLine();
-MixingArray(matrix);
-PrintArray(matrix);
+GetNewArray (matrix);
+MixingArray();
+
 
 Console.WriteLine();
-
+*/
 /*****************************************************************************************************************
 
 Задача 48: Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле: Aₘₙ = m+n. 
@@ -1230,9 +1263,40 @@ Console.WriteLine();
        
 */
 
+int [] ArrayOneRow = {71, 22, 38, 45, 51, 62, 73, 85, 100, 223};
 
 
 
+    int x = 2 * 5;                        // создаю   массив рандомных чисел которых ранее не было
+    int [] ArrRandom = new int [x];
+    int k = new Random().Next(0, x);
+
+    for (int i = 0; i < x; i++)
+    {
+        if (ArrRandom.Contains(k))
+        {
+            k = new Random().Next(1, x);
+            i--;    
+        } 
+        else 
+        {
+        ArrRandom [i] = k;
+        Console.Write($"{ArrRandom[i]}, ");
+        }
+       
+    }
+    int z = 0; 
+    for (x = 0; x < ArrayOneRow.Length; x++)
+    {    
+        k = ArrRandom [z];
+        int Buff = ArrayOneRow[x]; 
+        ArrayOneRow[x] = ArrayOneRow[k];  //  меняем числа на рандомные
+        ArrayOneRow[k] = Buff;
+        Console.Write ($"{ArrayOneRow[x]}      ");
+        z++;
+    }
+        
+    Console.WriteLine();
 
 
 
