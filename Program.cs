@@ -555,6 +555,684 @@ string NewText2 = Replace(Text,'s', 'S' );
 Console.WriteLine(NewText2);
 */
 
+/*
+Решение в группах задач:
+Задача 32: Напишите программу замена элементов массива: положительные элементы замените 
+на соответствующие отрицательные, и наоборот.
+[-4, -8, 8, 2] -> [4, 8, -8, -2] 
+
+Задача 33: Задайте массив. Напишите программу, которая определяет, присутствует ли заданное
+ число в массиве.
+4; массив [6, 7, 19, 345, 3] -> нет
+-3; массив [6, 7, 19, 345, 3] -> да
+
+int[]array = new int[12];
+        for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = new Random().Next(-9, 10);
+                if (i!=array.Length-1) Console.Write($"{array[i]}, ");
+                else Console.WriteLine($"{array[i]}");
+            }
+        int x=Convert.ToInt32(Console.ReadLine());
+        bool find=false;
+        foreach (var item in array )
+        {
+            if (x==item)
+            {
+                find=true;
+                break;
+            }
+        }
+
+        if (find) Console.WriteLine("ДА");
+        else  Console.WriteLine("НЕТ");
+*/
+/*
+Задача 35: Задайте одномерный массив из 15 случайных чисел. Найдите количество элементов массива,
+ значения которых лежат в отрезке [3,10]. 
+Пример для массива из 5, а не 123 элементов. В своём решении сделайте для 15
+[5, 18, 123, 6, 2] -> 1
+[1, 2, 3, 6, 2] -> 0
+[10, 11, 12, 13, 14] -> 5
+
+int [] numbers = new int[15];
+for(int i = 0; i < 15; i++)
+{
+    numbers[i] = new Random().Next(0,1000);
+    if (i!=15-1)  Console.Write($"{numbers[i]}, ");
+    else Console.WriteLine($"{numbers[i]}");
+}
+Console.WriteLine();
+int count = 0;
+for (int i = 0; i < 15; i++)
+{
+    if (numbers[i]> 9 && numbers[i]<100)
+    {
+        count= count + 1;
+    }
+}
+Console.WriteLine($"количество чисел от 10 до 100 : {count} .");
+
+
+Задача 37: Найдите произведение пар чисел в одномерном массиве. 
+Парой считаем первый и последний элемент, второй и предпоследний и т.д. 
+Результат запишите в новом массиве.
+[1 2 3 4 5] -> 5 8 3
+[6 7 3 6] -> 36 21
+*/
+/*
+Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами.
+ Напишите программу, которая покажет количество чётных чисел в массиве.
+[345, 897, 568, 234] -> 2
+
+
+int EvenNumCount()
+{
+    Console.WriteLine("Please input a size of Array");
+    int n = Convert.ToInt32(Console.ReadLine());
+    int [] Array = new int [n];
+    Console.WriteLine("Array");
+    for (int i=0; i<Array.Length; i++)
+    {
+        Array[i] = new Random().Next(100,1000);
+        Console.Write (Array[i]+ " ");
+    }   
+    Console.WriteLine();
+
+    int count = 0;
+    for (int i=0; i<Array.Length; i++)
+    {
+        if (Array[i]%2 == 0) 
+        {
+            count++;
+        }
+    }
+    Console.WriteLine("count "+ count);
+    Console.Write("");
+    return count;
+}  
+try{
+EvenNumCount();
+}
+catch
+{
+Console.WriteLine("Please use just integers");
+}
+*/
+
+/*
+Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
+[3, 7, 23, 12] -> 19
+[-4, -6, 89, 6] -> 0
+
+
+int EvenNumCount()
+{
+    Console.WriteLine("Please input a size of Array");
+    int n = Convert.ToInt32(Console.ReadLine());
+    int [] Array = new int [n];
+    Console.WriteLine("Array");
+    for (int i=0; i<Array.Length; i++)
+    {
+        Array[i] = new Random().Next(1,10);
+        Console.Write (Array[i]+ " ");
+    }   
+    Console.WriteLine();
+
+    int Sum = 0;
+    for (int i=0; i<Array.Length; i++)
+    {
+        if (i%2 != 0) 
+        {
+            Sum += Array[i];
+        }
+    }
+    Console.WriteLine("Sum of element of odd positions "+ Sum);
+    Console.Write("");
+    return Sum;
+}  
+try{
+EvenNumCount();
+}
+catch
+{
+Console.WriteLine("Please use just integers");
+}
+*/
+
+
+
+/*
+Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным
+ элементом массива.
+[3 7 22 2 78] -> 76
+
+
+Первый вариант решения с 0.643657342658424682
+double DiffMinMaxRealNum() 
+{
+    Console.WriteLine("Please input a size of Array");
+    int n = Convert.ToInt32(Console.ReadLine());
+    double [] Array = new double [n];
+    Console.WriteLine("Array:");
+    Random rnd = new Random();
+    int i = 0;
+    for (i=0; i<Array.Length; i++)
+    {
+        Array[i] = rnd.NextDouble();
+        Console.Write (Array[i]+ "  ");
+    }   
+    Console.WriteLine();
+
+    double Min = 1;
+    double Max = 0;
+    for (i=0; i<Array.Length; i++)
+    {
+        if (Array[i] < Min)
+        {
+           Min = Array[i];   
+        } 
+        if (Array[i] > Max)
+        {
+            Max = Array[i];
+        }
+    }
+    double Diff = Max - Min;
+    Console.WriteLine("Difference between Min and Max = " + Diff);
+    Console.WriteLine();
+    return Diff;
+}  
+try{
+    DiffMinMaxRealNum();
+}
+catch
+{
+   Console.WriteLine("Please use integer"); 
+}
+
+Второй  вариант решения с простыми числами!!!!!!!!!!!!!!!!!!!!!!!!!
+double DiffMinMaxReal2Num() 
+{
+    Console.WriteLine("Please input a size of Array");
+    int n = Convert.ToInt32(Console.ReadLine());
+    double [] Array = new double [n];
+    Console.WriteLine("Array:");
+
+    int i = 0;
+    for (i=0; i<Array.Length; i++)
+    {
+        Array[i] = new Random().Next(1, 10);
+        Console.Write (Array[i]+ "  ");
+    }   
+    Console.WriteLine();
+
+    double Min = 10;
+    double Max = 1;
+    for (i=0; i<Array.Length; i++)
+    {
+        if (Array[i] < Min)
+        {
+           Min = Array[i];   
+        } 
+        if (Array[i] > Max)
+        {
+            Max = Array[i];
+        }
+    }
+    double Diff = Max - Min;
+    Console.WriteLine("Difference between Min and Max = " + Diff);
+    Console.WriteLine();
+    return Diff;
+}  
+try{
+    DiffMinMaxReal2Num();
+}
+catch
+{
+   Console.WriteLine("Please use integer"); 
+}
+*/
+
+/*****************************************************************************************************************************************
+Задача 19 HARD - необязательная: Напишите программу, которая принимает на вход любое число и проверяет,
+ является ли оно палиндромом.
+
+void Palindrom()
+{
+    Console.WriteLine ("Please input a number:");
+    int n = Convert.ToInt32(Console.ReadLine());
+    int N = n;
+
+    int count = 1;
+    while (n/10 > 0 )
+    {
+        count++;
+        n = n/10;
+    }
+
+    int [] Array = new int [count];
+    for (int i = 0; i < Array.Length; i++)
+    {
+        Array [i] = N%10;
+        N = N/10;
+    }
+    Console.WriteLine ();
+        
+    int TrueKey = 0;
+    for (int i = 0; i < Array.Length; i++)
+    {
+        if (Array[i] == Array[count-1])
+        {
+            count --;
+        }   
+        else  TrueKey=1;
+    }
+    if (TrueKey == 1) Console.WriteLine ( "Usual digit");
+    else Console.WriteLine ("Palindrom");
+}      
+try 
+{
+    Palindrom();
+}
+catch
+{
+    Console.WriteLine ( "You should input integers only!");
+}
+*/
+
+/*****************************************************************************************************************************************
+Задача 21 HARD - необязательная
+Напишите программу, которая принимает на вход целое положительное число N и координаты двух точек
+ и находит расстояние между ними в N-мерном пространстве. 
+double nDimSpace()
+{
+    Console.WriteLine("Please input a dimension of space");
+    int n = Convert.ToInt32(Console.ReadLine());
+    int [] ArrayA = new int [n];
+    Console.WriteLine("Please input coordinates of point A in space");
+    for (int i=0; i<ArrayA.Length; i++)
+    {
+        ArrayA[i] = Convert.ToInt32(Console.ReadLine());
+    }  
+    int [] ArrayB = new int [n];
+    Console.WriteLine("Please input coordinates of point B in space");
+    for (int i=0; i<ArrayB.Length; i++)
+    {
+        ArrayB[i] = Convert.ToInt32(Console.ReadLine());
+    }  
+    double S =0; 
+    double SumMathPow =0;   
+    for (int i=0; i<ArrayA.Length; i++)
+    {
+        SumMathPow += Math.Pow(ArrayA[i]-ArrayB[i],2); 
+        S = Math.Sqrt(SumMathPow);
+    }
+    return S;
+}
+try
+{
+ Console.WriteLine("Distance between A and B = " +nDimSpace());   
+}
+catch
+{
+Console.WriteLine("Please input correctly again!"); 
+}
+*/
+
+
+/* Двухмерные массивы!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+string [,] table = new string[2,5];
+table [1,2] = "слово";
+
+for (int rows = 0; rows < 2; rows++)
+{
+    for (int columns = 0; columns < 5; columns++)
+    {
+        Console.WriteLine($"-{table[rows, columns]}-");
+    }
+}
+*/
+/*****************************************************************************************************************************************
+Двухмерный массив
+void PrintArray(int [,]matr)
+{
+for (int i = 0; i < matr.GetLength(0); i++)
+{
+    for (int j = 0; j < matr.GetLength(1); j++)
+    {
+       Console.Write($"{matr [i,j]} ");
+    }
+Console.WriteLine();
+}
+}
+
+void FillArray(int [,]matr)
+{
+for (int i = 0; i < matr.GetLength(0); i++)
+{
+    for (int j = 0; j < matr.GetLength(1); j++)
+    {
+        matr [i,j] = new Random().Next(1,10);
+    }
+}
+}
+
+int [,] matrix = new int [3,4];
+PrintArray(matrix);
+FillArray(matrix);
+Console.WriteLine();
+PrintArray(matrix);
+
+****************************************************************************************************************************************
+ Закраска массива
+
+int [,] Pic = new int [,]
+{
+{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+};
+
+void PrintImag(int [,] imag)
+{
+for (int i = 0; i < imag.GetLength(0); i++)
+{
+    for (int j = 0; j < imag.GetLength(1); j++)
+    {
+       //Console.Write($"{imag [i,j]} ");
+       if (imag[i,j] == 0) Console.Write($" ");
+       if (imag[i,j] == 1) Console.Write($"+");
+    }
+Console.WriteLine();
+}
+}
+
+void FiilImage(int row, int col)
+{
+if( Pic[row,col] == 0)
+{
+    Pic [row, col] = 1;
+    FiilImage(row-1,col);
+    FiilImage(row,col-1);
+    FiilImage(row+1,col);
+    FiilImage(row,col+1);
+}
+}
+PrintImag(Pic);
+FiilImage(6,13);
+PrintImag(Pic);
+*/
+/*****************************************************************************************************************************************
+double Factorial (int n)
+{
+if (n ==1) return 1;
+else return n * Factorial(n -1);
+}
+Console.WriteLine(Factorial(5));
+
+for (int i = 1; i < 40; i++)
+{
+    Console.WriteLine($"число{i} + факториал{Factorial(i)}");
+}
+*/
+/*
+double fibonacci(int n)
+{
+if(n==1 || n==2) return 1;
+else return fibonacci(n-1) + fibonacci(n-2);
+}
+for (int i = 1; i < 40; i++)
+{
+    Console.WriteLine($"{i}! + {fibonacci(i)}");
+}
+*/
+/*****************************************************************************************************************************************
+ Разворот массива
+int n=9;
+        void PrintArray(int[] arr)
+            {
+            for(int i = 0; i < n; i++)
+                {     
+                if (i!=arr.Length-1)  Console.Write($"{arr[i]}, ");
+                else Console.WriteLine($"{arr[i]}"); 
+                } 
+            }
+
+        int [] numbers = new int[n];
+        for(int i = 0; i < n; i++)
+            {
+                numbers[i] = new Random().Next(0,100);
+            }
+        PrintArray(numbers);
+        Console.WriteLine();
+        int buf;
+        for(int i = 0; i < n/2; i++)
+           {
+               buf = numbers[i];
+               numbers[i] = numbers[n-1-i];
+               numbers[n-1-i] = buf;
+           }
+        PrintArray(numbers);
+
+*/
+/*********************************************************************************************************************************************************************************
+Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0
+ ввёл пользователь.
+5
+0, 7, 8, -2, -2 -> 2
+1, -7, 567, 89, 223-> 3
+вариация задачи 41 - пользователь не задает сколько чисел он введет (то есть число M),
+ а подсчет количества чисел производится после того, как пользователь не ввел информацию и нажал Enter.
+
+int SumPositiv()
+{
+Console.WriteLine("Please input a numbers");
+int [] Array = Console.ReadLine().Split(' ').Select(e => Convert.ToInt32(e)).ToArray();
+int Sum = 0;
+for (int i = 0; i < Array.Length; i++)
+{   
+    if (Array[i] > 0) Sum += 1;
+}
+return Sum;
+}
+
+try 
+{
+   Console.WriteLine (SumPositiv());
+}
+catch
+{
+    Console.WriteLine ("Please input numbers separated by one space!");
+}
+*/
+/********************************************************************************************************************************************************************************
+Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых,
+ заданных уравнениями y = k1 * x + b1, y = k2 * x + b2;
+  значения b1, k1, b2 и k2 задаются пользователем.
+b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
+
+
+void Coordinates()
+{
+    Console.WriteLine("Please input numer b1");
+    double b1 = Convert.ToDouble(Console.ReadLine()); 
+    Console.WriteLine("Please input numer k1");
+    double k1 = Convert.ToDouble(Console.ReadLine()); 
+    Console.WriteLine("Please input numer b2");
+    double b2 = Convert.ToDouble(Console.ReadLine()); 
+    Console.WriteLine("Please input numer k2");
+    double k2 = Convert.ToDouble(Console.ReadLine()); 
+
+    for (double x = -10.5; x <= 10.5; x++)
+        {
+            for (double y = -10.5; y <= 10.5; y++)
+            {
+                if ( y == k1 * x + b1 && y ==k2 * x + b2 )
+                    Console.WriteLine($"Intersecton point X({x}, Y{y})");
+            }
+        }
+}
+try
+{
+   Coordinates(); 
+}
+catch
+{
+Console.WriteLine("Please input correctly");
+}
+*/
+/* *******************************************************************************************************************************************************************************
+задача 40 - HARD необязательная. На вход программы подаются три целых положительных числа.
+ Определить , является ли это сторонами треугольника. Если да, то вывести всю информацию 
+ по нему - площадь, периметр, значения углов треугольника в градусах, является ли он 
+ прямоугольным, равнобедренным, равносторонним.
+
+void TriangelPar()
+{
+    Console.WriteLine("Please input side a of the triangle");
+    double a = Convert.ToDouble(Console.ReadLine()); 
+    Console.WriteLine("Please input side b of the triangle");
+    double b = Convert.ToDouble(Console.ReadLine()); 
+    Console.WriteLine("Please input side c of the triangle");
+    double c = Convert.ToDouble(Console.ReadLine()); 
+    
+    if (a + b > c && a + c > b && b +c > a )
+    {
+        Console.WriteLine("This is triangle");
+        double p = ( a + b + c ) / 2; // полупериметр
+        double S = Math.Sqrt(p *(p - a) * (p - b) * (p - c));
+        double P = p *2; //периметр
+
+        if (a*a == c*c + b*b || b*b == a*a + c*c || c*c == a*a + b*b) Console.WriteLine("This is right triangle ");
+        if ((a == b && a != c) || (a == c && a != b ) || (b == c && b != c)) Console.WriteLine("This is isosceles triangle");
+        if (a == b && a == c) Console.WriteLine("This is equilateral triangle");
+
+        Console.WriteLine($"S = {S}, P = {P}, ");
+        Console.WriteLine ("Angles of triangle: ");
+        Console.WriteLine("{0:F3}", Math.Acos((b*b + c*c - a*a) / (2*b*c)) * 180 / Math. PI);
+        Console.WriteLine("{0:F3}", Math.Acos((a*a + c*c - b*b) / (2*a*c)) * 180 / Math. PI);
+        Console.WriteLine("{0:F3}", Math.Acos((a*a + b*b - c*c) / (2*a*b)) * 180 / Math. PI);
+    } 
+    else Console.WriteLine("This is not a triangle");
+}
+try
+{
+   TriangelPar(); 
+}
+catch
+{
+Console.WriteLine("Please input correctly");
+}
+*/
+/*
+Задача 2 HARD необязательная. Сгенерировать массив случайных целых чисел размерностью m*n (размерность вводим с клавиатуры).
+ Вывести на экран красивенько таблицей. Перемешать случайным образом элементы массива, причем чтобы каждый гарантированно
+  переместился на другое место (возможно для этого удобно будет использование множества) и выполнить это за m*n / 2 итераций.
+То есть если массив три на четыре, то надо выполнить не более 6 итераций. И далее в конце опять вывести на экран как таблицу.
+*/
+Console.WriteLine("Please input m and n");
+int m = Convert.ToInt32(Console.ReadLine());
+int n = Convert.ToInt32(Console.ReadLine());
+int k = 0;
+int l = 0;
+Console.WriteLine();
+int [,] matrix = new int [m,n];
+
+void PrintArray(int [,]matr)
+{
+for (int i = 0; i < matr.GetLength(0); i++)
+{
+    for (int j = 0; j < matr.GetLength(1); j++)
+    {
+       Console.Write($"{matr [i,j] }({i},{j}) ");
+    }
+    Console.WriteLine();
+}
+}
+
+void FillArray(int [,]matr)
+{
+
+for (int i = 0; i < matr.GetLength(0); i++)
+{
+    for (int j = 0; j < matr.GetLength(1); j++)
+    {
+        matr [i,j] = new Random().Next(1,100);
+    }
+}
+}
+
+void MixingArray(int [,]matr)
+{
+    for ( int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int j = 0; j < matr.GetLength(1); j++)
+        {  
+            k = new Random().Next(0,m); // ввел случайные координаты
+            l = new Random().Next(0,n);
+
+            int Buff = matr[i,j];
+            matr[i,j] = matr[k,l];   // заменил на первый элемент и далее по порядку
+            matr[k,l] = Buff;
+               
+        }
+    }
+    Console.WriteLine();
+    }
+
+
+
+
+FillArray(matrix);
+PrintArray(matrix);
+Console.WriteLine();
+MixingArray(matrix);
+PrintArray(matrix);
+
+Console.WriteLine();
+
+/*****************************************************************************************************************
+
+Задача 48: Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле: Aₘₙ = m+n. 
+Выведите полученный массив на экран.
+  
+        void PrintArray(int[,] table)
+            {
+            for (int i = 0; i < table.GetLength(0); i++)
+                {
+                    for (int j = 0; j < table.GetLength(1); j++)
+                        {
+                            Console.Write(table[i,j] + "\t" );
+                        }
+                    Console.WriteLine();
+                }
+            }
+
+
+        int[,] FillArray(int m, int n)
+            {
+                int[,] array = new int [m,n];
+                for (int i=0;i<m;i++)
+                    {
+                       for (int j=0;j<n;j++) array[i,j] = i+j;
+                    }
+                return array;
+
+            }
+       
+*/
+
+
+
+
 
 
 
