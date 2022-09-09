@@ -1138,16 +1138,16 @@ Console.WriteLine("Please input correctly");
   переместился на другое место (возможно для этого удобно будет использование множества) и выполнить это за m*n / 2 итераций.
 То есть если массив три на четыре, то надо выполнить не более 6 итераций. И далее в конце опять вывести на экран как таблицу.
 */
-/*
+
 Console.WriteLine("Please input m and n");
 int m = Convert.ToInt32(Console.ReadLine());
 int n = Convert.ToInt32(Console.ReadLine());
 int k = 0;
-
-
 Console.WriteLine();
+
 int [,] matrix = new int [m,n];
 int [] ArrayOneRow = new int [m * n];
+
 
 void PrintArray(int [,]matr)
 {
@@ -1173,7 +1173,7 @@ for (int i = 0; i < matr.GetLength(0); i++)
 }
 }
 
-void GetNewArray (int [,]matr)
+void GetNewArray (int [,]matr)    // создаю линейный массив ArrayOneRow[x]
 {
     for ( int i = 0; i < matr.GetLength(0); i++)
     {
@@ -1191,37 +1191,32 @@ void GetNewArray (int [,]matr)
 
 void MixingArray()
 {   
-    int x = m * n;                        // создаю   массив рандомных чисел которых ранее не было
+    int x = m*n;                                                                 // создаю   массив рандомных чисел 
     int [] ArrRandom = new int [x];
-    k = new Random().Next(1, x);
+    for (int i = 0; i < ArrRandom.Length; i++) ArrRandom [i] = -1;              // заполнил его весь -1 вместо нулей
+    
+    int [] ArrayOneRow2 = new int [x];
+                      
+    int k = new Random().Next(0, x);
 
-    for (int i = 0; i < x; i++)
+    for (int i = 0; i < ArrRandom.Length; i++)  // создал массив рандомных неповторяющихся индексов
     {
         if (ArrRandom.Contains(k))
         {
-            k = new Random().Next(1, x);
-            i--;    
+            k = new Random().Next(0, x);
+            i--;  
         } 
         else 
         {
-        ArrRandom [i] = k;
+            if (k == i) k += 1;       // если индекс совпадает, то чтобы гарантированно не было пересечения, увеличиваем его на 1
+            ArrRandom  [i] = k;       // заполняем Рандомный массив для отсечения неугодных значений
+            //Console.Write($"({ArrRandom[i]}, )");
+            ArrayOneRow2[i] = ArrayOneRow[k]; // заполняем массив 2 числами из первого массива выбираемыми случайно
+            Console.Write($"{ArrayOneRow2[i]}, "); 
         }
-       
-    }
-
-     for (x = 0; x < ArrayOneRow.Length; x++)
-        {
-        int i = 0;    
-        k = ArrRandom [i];
-        int Buff = ArrayOneRow[x]; 
-        ArrayOneRow[x] = ArrayOneRow[k];  //  меняем числа на рандомные
-        ArrayOneRow[k] = Buff;
-        Console.Write ($"{ArrayOneRow[x]}      ");
-        i++;
-        }
-        
+    }    
     Console.WriteLine();
-}
+    }
 
 FillArray(matrix);
 PrintArray(matrix);
@@ -1231,7 +1226,7 @@ MixingArray();
 
 
 Console.WriteLine();
-*/
+
 /*****************************************************************************************************************
 
 Задача 48: Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле: Aₘₙ = m+n. 
@@ -1263,40 +1258,39 @@ Console.WriteLine();
        
 */
 
-int [] ArrayOneRow = {71, 22, 38, 45, 51, 62, 73, 85, 100, 223};
+// int [] ArrayOneRow = {71, 22, 38, 45, 51, 62, 73, 85, 100, 223}; // это наш линейный массив 
+// for (int i = 0; i <ArrayOneRow.Length; i++)
+// {
+//     Console.Write($"{ArrayOneRow [i]}, ");
+// }
+// Console.WriteLine();
 
 
+//     int x = 10;                                                                 // создаю   массив рандомных чисел 
+//     int [] ArrRandom = new int [x];
+//     for (int i = 0; i < ArrRandom.Length; i++) ArrRandom [i] = -1;              // заполнил его весь -1 вместо нулей
+    
+//     int [] ArrayOneRow2 = new int [x];
+                      
+//     int k = new Random().Next(0, x);
 
-    int x = 2 * 5;                        // создаю   массив рандомных чисел которых ранее не было
-    int [] ArrRandom = new int [x];
-    int k = new Random().Next(0, x);
-
-    for (int i = 0; i < x; i++)
-    {
-        if (ArrRandom.Contains(k))
-        {
-            k = new Random().Next(1, x);
-            i--;    
-        } 
-        else 
-        {
-        ArrRandom [i] = k;
-        Console.Write($"{ArrRandom[i]}, ");
-        }
-       
-    }
-    int z = 0; 
-    for (x = 0; x < ArrayOneRow.Length; x++)
-    {    
-        k = ArrRandom [z];
-        int Buff = ArrayOneRow[x]; 
-        ArrayOneRow[x] = ArrayOneRow[k];  //  меняем числа на рандомные
-        ArrayOneRow[k] = Buff;
-        Console.Write ($"{ArrayOneRow[x]}      ");
-        z++;
-    }
-        
-    Console.WriteLine();
+//     for (int i = 0; i < ArrRandom.Length; i++)  // создал массив рандомных неповторяющихся индексов
+//     {
+//         if (ArrRandom.Contains(k))
+//         {
+//             k = new Random().Next(0, x);
+//             i--;  
+//         } 
+//         else 
+//         {
+//             if (k == i) k += 1;
+//             ArrRandom  [i] = k;       // заполняем Рандомный массив для отсечения неугодных значений
+//             //Console.Write($"({ArrRandom[i]}, )");
+//             ArrayOneRow2[i] = ArrayOneRow[k]; // заполняем массив 2 числами из первого массива выбираемыми случайно
+//             Console.Write($"{ArrayOneRow2[i]}, "); 
+//         }
+//     }    
+//     Console.WriteLine();
 
 
 
