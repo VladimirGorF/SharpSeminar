@@ -1188,9 +1188,9 @@ Console.WriteLine("Please input correctly");
 
 //     int [] ArrRandom = new int [m*n];                               // создаю   массив рандомных индексов
 //     for (int i = 0; i < ArrRandom.Length; i++) ArrRandom [i] = -1;              // заполнил его весь "-1" вместо нулей
-    
+
 //     int [] ArrayOneRow2 = new int [m*n];
-                      
+
 //     int k = new Random().Next(0, m*n);
 
 //     for (int i = 0; i < ArrRandom.Length; i++)  // заполняю рандомный массив  использованными индексами
@@ -1225,7 +1225,7 @@ Console.WriteLine("Please input correctly");
 
 // Задача 48: Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле: Aₘₙ = m+n. 
 // Выведите полученный массив на экран.
-  
+
 //         void PrintArray(int[,] table)
 //             {
 //             for (int i = 0; i < table.GetLength(0); i++)
@@ -1250,48 +1250,118 @@ Console.WriteLine("Please input correctly");
 
 //             }
 
-/*Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+/*****************************************************************************************************************
+Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
 m = 3, n = 4.
 0,5 7 -2 -0,2
 1 -3,3 8 -9,9
 8 7,8 -7,1 9
 */
+// void PrintArray(double[,] Matrix)
+// {
+//     for (int i = 0; i < Matrix.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < Matrix.GetLength(1); j++)
+//         {
+//             Console.Write($"{Matrix[i, j]} ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
 
-void PrintArray(double[,] Matrix)
-{
-for (int i = 0; i <Matrix.GetLength(0); i++)
-{
-    for (int j = 0; j <Matrix.GetLength(1); j++)
-    {
-        Console.Write ($"{Matrix [i,j]} ");
-    }
-    Console.WriteLine();
-}
-}
+// void FillArray(int m, int n)
+// {
+//     double[,] Array = new double[m, n];
+//     Random rnd = new Random();
+//     for (int i = 0; i < m; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//         {
+//             double x = rnd.NextDouble() * 100;
+//             Array[i, j] = Math.Round(x, 1);
+//         }
+//     }
+//     PrintArray(Array);
+// }
 
-void FillArray(int m, int n)
-{
-double [,] Array = new double[m,n];
-Random rnd = new Random();
-for (int i = 0; i <m; i++)
-{
-    for (int j = 0; j < n; j++)
-    {
-        double x = rnd.NextDouble() * 100;
-        Array[i,j] = Math.Round(x, 1);
-    }
-}
-PrintArray(Array);
-}
+// try
+// {
+//     FillArray(3, 4);
+//     Console.WriteLine();
+// }
+// catch
+// {
+//     Console.WriteLine("Please use integers only");
+// }
+
+/*****************************************************************************************************************
+Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента
+ или же указание, что такого элемента нет.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+17 -> такого числа в массиве нет
 
 try
 {
-    FillArray(3, 4);
+Console.WriteLine("Please input m and n");
+int m = Convert.ToInt32(Console.ReadLine());
+int n = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Please input x");
+int x = Convert.ToInt32(Console.ReadLine()); ;
+int[,] Array = new int[m, n];
 Console.WriteLine();
+
+void PrintArray(int[,] Array)
+{
+    for (int i = 0; i < Array.GetLength(0); i++)
+    {
+        for (int j = 0; j < Array.GetLength(1); j++)
+        {
+            Console.Write($"{Array[i, j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+
+void FillArray(int[,] Array)
+{
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            Array[i, j] = new Random().Next(1, 10);
+        }
+    }
+}
+
+int CheckArray(int[,] Array)
+{
+    int Element = 0;
+    for (int i = 0; i < Array.GetLength(0); i++)
+    {
+        for (int j = 0; j < Array.GetLength(1); j++)
+        {
+            if (Array[i, j] == x)
+            {
+                Element = x;
+            }
+        }
+    }
+    if (Element == 0) Console.WriteLine($"{x} ->  this integer is absent");
+    else Console.WriteLine(Element);
+    return Element;
+}
+
+FillArray(Array);
+PrintArray(Array);
+CheckArray(Array);
+Console.WriteLine();
+
 }
 catch
 {
-    Console.WriteLine("Please use integers only");
+    Console.WriteLine("Pease input correctly");
 }
-
-
+*/
