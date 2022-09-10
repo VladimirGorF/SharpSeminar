@@ -1139,87 +1139,158 @@ Console.WriteLine("Please input correctly");
 То есть если массив три на четыре, то надо выполнить не более 6 итераций. И далее в конце опять вывести на экран как таблицу.
 */
 
-// Console.WriteLine("Please input m and n");
-// int m = Convert.ToInt32(Console.ReadLine());
-// int n = Convert.ToInt32(Console.ReadLine());
-// Console.WriteLine();
-
-// int [,] matrix = new int [m,n];
-// int [] ArrayOneRow = new int [m * n];
+Console.WriteLine("Please input m and n");
+int m = Convert.ToInt32(Console.ReadLine());
+int n = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
 
 
-// void PrintArray(int [,]matr)
-// {
-// for (int i = 0; i < matr.GetLength(0); i++)
-// {
-//     for (int j = 0; j < matr.GetLength(1); j++)
+int[,] matrix = new int[m, n];
+int[] ArrRandomI = new int[m/2];
+// int[] ArrRandomJ = new int[n/2];   
+
+
+
+void PrintArray(int[,] matrix)
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            Console.Write($"{matrix[i, j]} ");
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+
+void FillArray(int[,] matrix)
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = new Random().Next(1, 100);
+        }
+    }
+}
+
+
+
+// void RandomIndexJ(int[] ArrRandomJ)    //   Создал массив рандомных индексов J 
+// {   
+//     Console.Write($"Рандомные индексы: ");                                                                          
+//     for (int i = 0; i < ArrRandomJ.Length; i++) ArrRandomJ[i] = -1;              // заполнил массив рандомных индексов "-1" вместо нулей
+//     int l = new Random().Next(n/2, n);
+//     for (int i = 0; i < ArrRandomJ.Length; i++)  
 //     {
-//        Console.Write($"{matr [i,j] } ");
-//     }
-//     Console.WriteLine();
-// }
-// }
-
-// void FillArray(int [,]matr)
-// {
-
-// for (int i = 0; i < matr.GetLength(0); i++)
-// {
-//     for (int j = 0; j < matr.GetLength(1); j++)
-//     {
-//         matr [i,j] = new Random().Next(1,100);
-//     }
-// }
-// }
-
-// void GetNewArray (int [,]matr)    // создаю линейный массив ArrayOneRow[x]
-// {
-//     for ( int i = 0; i < matr.GetLength(0); i++)
-//     {
-//         for (int j = 0; j < matr.GetLength(1); j++)
-//            {
-//             int x = 0;
-//             ArrayOneRow[x] = matr[i,j];
-//             Console.Write($"{ArrayOneRow[x]}     ");
-//             x += 1; 
-//            }
-//     }
-//     Console.WriteLine();
-
-//     int [] ArrRandom = new int [m*n];                               // создаю   массив рандомных индексов
-//     for (int i = 0; i < ArrRandom.Length; i++) ArrRandom [i] = -1;              // заполнил его весь "-1" вместо нулей
-
-//     int [] ArrayOneRow2 = new int [m*n];
-
-//     int k = new Random().Next(0, m*n);
-
-//     for (int i = 0; i < ArrRandom.Length; i++)  // заполняю рандомный массив  использованными индексами
-//     {
-//         if (ArrRandom.Contains(k))
+//         if (ArrRandomJ.Contains(l))
 //         {
-//             k = new Random().Next(m*n);
-//             i--;  
-//         } 
-//         else 
-//         {
-//             if (k == i) k += 1;       // если индекс совпадает, то чтобы гарантированно не было пересечения, увеличиваем его на 1
-//             ArrRandom  [i] = k;       // заполняем Рандомный массив для отсечения неугодных значений
-//             ArrayOneRow2[i] = ArrayOneRow[k]; // заполняем линейный Массив 2 числами из первого массива выбираемыми по индексам вылетающим случайно
-//             Console.Write($"{ArrayOneRow2[i]},     "); 
+//             l = new Random().Next(n/2, n);
+//             i--;
 //         }
-//     }    
+//         else
+//         {
+//             ArrRandomJ[i] = l;       // заполняем Рандомный массив для отсечения  повторных значений 
+//             Console.Write($"{ArrRandomJ[i]}, ");
+//         }
+//     }
 //     Console.WriteLine();
-// }   
+// }
 
 
-// FillArray(matrix);
-// PrintArray(matrix);
-// Console.WriteLine();
-// GetNewArray (matrix);
+void RandomIndexI(int[] ArrRandomI)    //   Создал массив рандомных индексов J 
+{   
+    Console.Write($"Рандомные индексы: ");                                                                          
+    for (int i = 0; i < ArrRandomI.Length; i++) ArrRandomI[i] = -1;              // заполнил массив рандомных индексов "-1" вместо нулей
+    int k = new Random().Next(m/2, m);
+    for (int i = 0; i < ArrRandomI.Length; i++)  
+    {
+        if (ArrRandomI.Contains(k))
+        {
+            k = new Random().Next(m/2, m);
+            i--;
+        }
+        else
+        {
+            ArrRandomI[i] = k;       // заполняем Рандомный массив для отсечения  повторных значений 
+            Console.Write($"{ArrRandomI[i]}, ");
+        }
+    }
+    Console.WriteLine();
+}
+
+
+void ChangeArray(int[,] matrix)
+{   
+    for (int i = 0; i < m/2; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            int k = ArrRandomI[i];
+            int Buff = matrix[i, j];
+            matrix[i, j] = matrix[k, j];
+            matrix[k, j] = Buff;
+            // Console.Write($"{matrix[i,j]}, ");
+        }
+        Console.WriteLine();
+    }
+}
 
 
 
-// Console.WriteLine();
+
+// void GetNewArray(int[] ArrayOneRow)    // Из двухмерного создаю линейный массив ArrayOneRow[x]
+// {
+//     for (int i = 0; i < m; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//         {
+//             int x = 0;
+//             ArrayOneRow[x] = matrix[i, j];
+//             Console.Write($"{ArrayOneRow[x]}     ");
+//             x += 1;
+//         }
+//     }
+//     Console.WriteLine();
+// }
+
+
+
+
+// void ChangeArray(int[] ArrayOneRow2)
+// {                                                                             
+//     for (int i = 0; i < ArrRandom.Length; i++) ArrRandom[i] = -1;              // заполнил массив рандомных индексов "-1" вместо нулей
+
+//     int k = new Random().Next(0, m * n);
+//     for (int i = 0; i < ArrRandom.Length; i++)  
+//     {
+//         if (ArrRandom.Contains(k) || (k == i && k == m*n-1))
+//         {
+//             k = new Random().Next(m * n);
+//             i--;
+//         }
+//         else
+//         {
+//             if (k == i) k += 1;   // если индекс совпадает, то чтобы гарантированно не было пересечения, увеличиваем его на 1
+//             ArrRandom[i] = k;       // заполняем Рандомный массив для отсечения  повторных значений
+//             ArrayOneRow2[i] = ArrayOneRow[k]; // заполняем линейный Массив2 числами из массива ArrayOneRow выбираемыми по индексам из массива ArrRandom
+//             Console.Write($"{ArrayOneRow2[i]},     ");
+//         }
+//     }
+//     Console.WriteLine();
+// }
+
+FillArray(matrix);
+PrintArray(matrix);
+RandomIndexI(ArrRandomI);
+// RandomIndexJ(ArrRandomJ);
+ChangeArray(matrix);
+PrintArray(matrix);
+// GetNewArray(ArrayOneRow);
+// ChangeArray(ArrayOneRow2);
+Console.WriteLine();
+
 
 // /*****************************************************************************************************************
 
@@ -1365,3 +1436,7 @@ catch
     Console.WriteLine("Pease input correctly");
 }
 */
+// *********************************************************************************************************************
+
+
+
