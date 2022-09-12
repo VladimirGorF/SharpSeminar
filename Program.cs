@@ -1139,41 +1139,41 @@ Console.WriteLine("Please input correctly");
 То есть если массив три на четыре, то надо выполнить не более 6 итераций. И далее в конце опять вывести на экран как таблицу.
 */
 
-Console.WriteLine("Please input m and n");
-int m = Convert.ToInt32(Console.ReadLine());
-int n = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine();
+// Console.WriteLine("Please input m and n");
+// int m = Convert.ToInt32(Console.ReadLine());
+// int n = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine();
 
 
-int[,] matrix = new int[m, n];
-int[] ArrRandomI = new int[m/2];
-// int[] ArrRandomJ = new int[n/2];   
+// int[,] matrix = new int[m, n];
+// int[] ArrRandomI = new int[m];
+// int[] ArrRandomJ = new int[n];   
 
 
 
-void PrintArray(int[,] matrix)
-{
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            Console.Write($"{matrix[i, j]} ");
-        }
-        Console.WriteLine();
-    }
-    Console.WriteLine();
-}
+// void PrintArray(int[,] matrix)
+// {
+//     for (int i = 0; i < matrix.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < matrix.GetLength(1); j++)
+//         {
+//             Console.Write($"{matrix[i, j]} ");
+//         }
+//         Console.WriteLine();
+//     }
+//     Console.WriteLine();
+// }
 
-void FillArray(int[,] matrix)
-{
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-            matrix[i, j] = new Random().Next(1, 100);
-        }
-    }
-}
+// void FillArray(int[,] matrix)
+// {
+//     for (int i = 0; i < matrix.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < matrix.GetLength(1); j++)
+//         {
+//             matrix[i, j] = new Random().Next(1, 100);
+//         }
+//     }
+// }
 
 
 
@@ -1181,12 +1181,12 @@ void FillArray(int[,] matrix)
 // {   
 //     Console.Write($"Рандомные индексы: ");                                                                          
 //     for (int i = 0; i < ArrRandomJ.Length; i++) ArrRandomJ[i] = -1;              // заполнил массив рандомных индексов "-1" вместо нулей
-//     int l = new Random().Next(n/2, n);
+//     int l = new Random().Next(0, n);
 //     for (int i = 0; i < ArrRandomJ.Length; i++)  
 //     {
 //         if (ArrRandomJ.Contains(l))
 //         {
-//             l = new Random().Next(n/2, n);
+//             l = new Random().Next(0, n);
 //             i--;
 //         }
 //         else
@@ -1199,46 +1199,44 @@ void FillArray(int[,] matrix)
 // }
 
 
-void RandomIndexI(int[] ArrRandomI)    //   Создал массив рандомных индексов J 
-{   
-    Console.Write($"Рандомные индексы: ");                                                                          
-    for (int i = 0; i < ArrRandomI.Length; i++) ArrRandomI[i] = -1;              // заполнил массив рандомных индексов "-1" вместо нулей
-    int k = new Random().Next(m/2, m);
-    for (int i = 0; i < ArrRandomI.Length; i++)  
-    {
-        if (ArrRandomI.Contains(k))
-        {
-            k = new Random().Next(m/2, m);
-            i--;
-        }
-        else
-        {
-            ArrRandomI[i] = k;       // заполняем Рандомный массив для отсечения  повторных значений 
-            Console.Write($"{ArrRandomI[i]}, ");
-        }
-    }
-    Console.WriteLine();
-}
+// void RandomIndexI(int[] ArrRandomI)    //   Создал массив рандомных индексов J 
+// {   
+//     Console.Write($"Рандомные индексы: ");                                                                          
+//     for (int i = 0; i < ArrRandomI.Length; i++) ArrRandomI[i] = -1;              // заполнил массив рандомных индексов "-1" вместо нулей
+//     int k = new Random().Next(0, m);
+//     for (int i = 0; i < ArrRandomI.Length; i++)  
+//     {
+//         if (ArrRandomI.Contains(k))
+//         {
+//             k = new Random().Next(0, m);
+//             i--;
+//         }
+//         else
+//         {
+//             ArrRandomI[i] = k;       // заполняем Рандомный массив для отсечения  повторных значений 
+//             Console.Write($"{ArrRandomI[i]}, ");
+//         }
+//     }
+//     Console.WriteLine();
+// }
 
 
-void ChangeArray(int[,] matrix)
-{   
-    for (int i = 0; i < m/2; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            int k = ArrRandomI[i];
-            int Buff = matrix[i, j];
-            matrix[i, j] = matrix[k, j];
-            matrix[k, j] = Buff;
-            // Console.Write($"{matrix[i,j]}, ");
-        }
-        Console.WriteLine();
-    }
-}
-
-
-
+// void ChangeArray(int[,] matrix)
+// {   
+//     for (int i = 0; i < m; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//         {
+//             int k = ArrRandomI[i];
+//             int l = ArrRandomJ[i];
+//             int Buff = matrix[i, j];
+//             matrix[i, j] = matrix[k, l];
+//             matrix[k, l] = Buff;
+//             // Console.Write($"{matrix[i,j]}, ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
 
 // void GetNewArray(int[] ArrayOneRow)    // Из двухмерного создаю линейный массив ArrayOneRow[x]
 // {
@@ -1254,8 +1252,6 @@ void ChangeArray(int[,] matrix)
 //     }
 //     Console.WriteLine();
 // }
-
-
 
 
 // void ChangeArray(int[] ArrayOneRow2)
@@ -1278,48 +1274,19 @@ void ChangeArray(int[,] matrix)
 //             Console.Write($"{ArrayOneRow2[i]},     ");
 //         }
 //     }
-//     Console.WriteLine();
-// }
+// //     Console.WriteLine();
+// // }
 
-FillArray(matrix);
-PrintArray(matrix);
-RandomIndexI(ArrRandomI);
+// FillArray(matrix);
+// PrintArray(matrix);
+// RandomIndexI(ArrRandomI);
 // RandomIndexJ(ArrRandomJ);
-ChangeArray(matrix);
-PrintArray(matrix);
-// GetNewArray(ArrayOneRow);
-// ChangeArray(ArrayOneRow2);
-Console.WriteLine();
+// ChangeArray(matrix);
+// PrintArray(matrix);
+// // GetNewArray(ArrayOneRow);
+// // ChangeArray(ArrayOneRow2);
+// Console.WriteLine();
 
-
-// /*****************************************************************************************************************
-
-// Задача 48: Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле: Aₘₙ = m+n. 
-// Выведите полученный массив на экран.
-
-//         void PrintArray(int[,] table)
-//             {
-//             for (int i = 0; i < table.GetLength(0); i++)
-//                 {
-//                     for (int j = 0; j < table.GetLength(1); j++)
-//                         {
-//                             Console.Write(table[i,j] + "\t" );
-//                         }
-//                     Console.WriteLine();
-//                 }
-//             }
-
-
-//         int[,] FillArray(int m, int n)
-//             {
-//                 int[,] array = new int [m,n];
-//                 for (int i=0;i<m;i++)
-//                     {
-//                        for (int j=0;j<n;j++) array[i,j] = i+j;
-//                     }
-//                 return array;
-
-//             }
 
 /*****************************************************************************************************************
 Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
@@ -1328,6 +1295,12 @@ m = 3, n = 4.
 1 -3,3 8 -9,9
 8 7,8 -7,1 9
 */
+
+// Console.WriteLine("Please input m and n");
+// int m = Convert.ToInt32(Console.ReadLine());
+// int n = Convert.ToInt32(Console.ReadLine());
+// double[,] Array = new double[m, n];
+
 // void PrintArray(double[,] Matrix)
 // {
 //     for (int i = 0; i < Matrix.GetLength(0); i++)
@@ -1342,7 +1315,6 @@ m = 3, n = 4.
 
 // void FillArray(int m, int n)
 // {
-//     double[,] Array = new double[m, n];
 //     Random rnd = new Random();
 //     for (int i = 0; i < m; i++)
 //     {
@@ -1352,12 +1324,12 @@ m = 3, n = 4.
 //             Array[i, j] = Math.Round(x, 1);
 //         }
 //     }
-//     PrintArray(Array);
 // }
 
 // try
 // {
-//     FillArray(3, 4);
+//     FillArray(m, n);
+//     PrintArray(Array);
 //     Console.WriteLine();
 // }
 // catch
@@ -1438,5 +1410,205 @@ catch
 */
 // *********************************************************************************************************************
 
+// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
+// int[,] Array = new int[,]
+// {
+//  {1, 4, 7, 2},
+//  {5, 9, 2, 3},
+//  {8, 4, 2, 4}
+// };
+
+// double[] ArrResault = new double[4];
+
+// void ArithmeticMeanColumn(int[,] Array)
+// {
+//     double Res = 0;
+//     Console.WriteLine("Срееднее арифметическое кадого столбца: ");
+//     for (int j = 0; j < Array.GetLength(1); j++)
+//     {
+//         for (int i = 0; i < Array.GetLength(0); i++)
+//         {
+
+//             Res = Res + Array[i, j];
+
+//         }
+//         Res = Res / 3;
+//         Res = Math.Round(Res, 1);
+//         ArrResault[j] = Res;
+//         Res = 0;
+//     }
+// }
+
+// void PrintArrResult()
+// {
+//     for (int i = 0; i < ArrResault.Length - 1; i++)
+//     {
+//         Console.Write($"{ArrResault[i]},  ");
+//     }
+//     Console.Write($"{ArrResault[ArrResault.Length - 1]}.");
+// }
+
+// ArithmeticMeanColumn(Array);
+// PrintArrResult();
+// Console.WriteLine();
+
+// /*********************************************************************************************************************
+// Задача HARD SORT.
+// Задайте двумерный массив из целых чисел. Количество строк и столбцов задается с клавиатуры. Отсортировать элементы по возрастанию слева направо и сверху вниз.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 10 3
+// После сортировки
+// 1 2 3 4
+// 5 7 9 10
+
+try
+{
+    Console.WriteLine("Please input m and n");
+    int m = Convert.ToInt32(Console.ReadLine());
+    int n = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine();
+    int[,] Array = new int[m, n];
+    int[] ArrayOneLine = new int[m * n];
+
+    void PrintArray()
+    {
+        for (int i = 0; i < Array.GetLength(0); i++)
+        {
+            for (int j = 0; j < Array.GetLength(1); j++)
+            {
+                Console.Write(Array[i, j]);
+            }
+            Console.WriteLine();
+        }
+        Console.WriteLine();
+    }
+
+    void FillArray()
+    {
+        for (int i = 0; i < Array.GetLength(0); i++)
+        {
+            for (int j = 0; j < Array.GetLength(1); j++)
+            {
+                Array[i, j] = new Random().Next(1, 10);
+            }
+        }
+
+    }
+
+    void FillOneLineArray()
+    {
+        int k = 0;
+        for (int i = 0; i < Array.GetLength(0); i++)
+        {
+            for (int j = 0; j < Array.GetLength(1); j++)
+            {
+                ArrayOneLine[k] = Array[i, j];
+                k += 1;
+            }
+        }
+    }
+
+    void BubbleSort(int[] Array)
+    {
+        for (int i = 0; i < ArrayOneLine.Length; i++)
+        {
+            for (int j = 0; j < ArrayOneLine.Length - 1; j++)
+            {
+                if (ArrayOneLine[j] > ArrayOneLine[j + 1])
+                {
+                    int temp = ArrayOneLine[j];
+                    ArrayOneLine[j] = ArrayOneLine[j + 1];
+                    ArrayOneLine[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    void FillSortArray(int[,] Array)
+    {
+        int k = 0;
+        for (int i = 0; i < Array.GetLength(0); i++)
+        {
+            for (int j = 0; j < Array.GetLength(1); j++)
+            {
+                Array[i, j] = ArrayOneLine[k];
+                k++;
+            }
+        }
+    }
+
+    FillArray();
+    PrintArray();
+    FillOneLineArray();
+    BubbleSort(ArrayOneLine);
+    FillSortArray(Array);
+    PrintArray();
+}
+catch
+{
+    Console.WriteLine("Please input correctly");
+}
+
+
+
+
+// ********************************************************************************************************************
+// Задача про библиотеку чисел.
+
+
+// Console.WriteLine("Please input m and n");
+// int m = Convert.ToInt32(Console.ReadLine());
+// int n = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine();
+// int [,] table = new int [m,n];
+// int [] Array = new int [10];
+
+// void FillArray(int[,] table)
+// {
+//     Random random = new Random();
+//     for (int i = 0; i < table.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < table.GetLength(1); j++)
+//         {
+//             table[i, j] = random.Next(1,10);
+//         }
+//     }
+// }
+
+// void PrintArray(int[,] table)
+// {
+//     for (int i = 0; i < table.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < table.GetLength(1); j++)
+//         {
+//             Console.Write(table[i, j] + "\t");
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+// void Dictionary(int[,] table) 
+// {
+
+//     for (int i = 0; i < table.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < table.GetLength(1); j++)
+//         {
+//             Array [ table [i,j]] ++;
+//             Console.Write($"{Array[i]}, ");
+//         }
+//     }
+// }
+
+
+// FillArray(table);
+// PrintArray(table);
+// Dictionary(table);
 
